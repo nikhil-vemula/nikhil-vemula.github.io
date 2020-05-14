@@ -1,0 +1,100 @@
+<!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/coding/subarraysumk/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/coding/>Codings</a></li><li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/coding/subarraysumk/>Number of sub arrays whose sum is K</a></li></ol><div class=single-post><span class=title>Number of sub arrays whose sum is K</span>
+<span class=meta><i class="far fa-calendar"></i>May 14, 2020 ·
+<span><i class="far fa-clock"></i>Work In Progress</span></span><div class=content><h2 id=sub-array>Sub Array</h2><ul><li><p>Continuous part of array.</p></li><li><p>Number of sub arrays for array of length n is n*(n+1)/2</p></li><li><p>Example: [1, 2, 3]<br>[1], [2], [3], [1,2], [2,3], [1,2,3]</p></li></ul><h3 id=approach-1>Approach 1</h3><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>nums</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>};</span>
+    <span class=kt>int</span> <span class=n>lengthOfSubArrray</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>while</span> <span class=p>(</span><span class=n>lengthOfSubArrray</span> <span class=o>&lt;=</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>())</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Sub array of length: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>lengthOfSubArrray</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>()</span><span class=o>-</span><span class=n>lengthOfSubArrray</span><span class=o>+</span><span class=mi>1</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>lengthOfSubArrray</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+                <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>nums</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=n>j</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+            <span class=p>}</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+            <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+        <span class=p>}</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=n>lengthOfSubArrray</span><span class=o>++</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Number of subarrrays: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>count</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=cm>/*
+</span><span class=cm>sum(k=1ton) n*(n-k)*k
+</span><span class=cm>*/</span>
+</code></pre></div><h3 id=approach-2>Approach 2</h3><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>nums</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>};</span>
+
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// starting position
+</span><span class=c1></span>        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=n>i</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+             <span class=c1>// ending position
+</span><span class=c1></span>            <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>k</span><span class=o>=</span><span class=n>i</span><span class=p>;</span> <span class=n>k</span> <span class=o>&lt;=</span><span class=n>j</span><span class=p>;</span> <span class=n>k</span><span class=o>++</span><span class=p>)</span>
+                <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>nums</span><span class=p>[</span><span class=n>k</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=output>Output</h3><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=m>1</span>
+<span class=m>1</span> <span class=m>2</span>
+<span class=m>1</span> <span class=m>2</span> <span class=m>3</span>
+<span class=m>1</span> <span class=m>2</span> <span class=m>3</span> <span class=m>4</span>
+<span class=m>2</span>
+<span class=m>2</span> <span class=m>3</span>
+<span class=m>2</span> <span class=m>3</span> <span class=m>4</span>
+<span class=m>3</span>
+<span class=m>3</span> <span class=m>4</span>
+<span class=m>4</span>
+</code></pre></div><h2 id=sum-of-subarrays>Sum of subarrays</h2><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>nums</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>};</span>
+    <span class=kt>int</span> <span class=n>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// starting position
+</span><span class=c1></span>        <span class=n>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=n>i</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=c1>// ending position
+</span><span class=c1></span>            <span class=c1>// Calculate sum by reusing previous sum
+</span><span class=c1></span>            <span class=n>sum</span> <span class=o>+=</span> <span class=n>nums</span><span class=p>[</span><span class=n>j</span><span class=p>];</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;sum: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>sum</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=final>Final</h2><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>nums</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>};</span>
+    <span class=kt>int</span> <span class=n>k</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// starting position
+</span><span class=c1></span>        <span class=n>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=n>i</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>nums</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=c1>// ending position
+</span><span class=c1></span>            <span class=c1>// Calculate sum by reusing previous sum(pre sum)
+</span><span class=c1></span>            <span class=n>sum</span> <span class=o>+=</span> <span class=n>nums</span><span class=p>[</span><span class=n>j</span><span class=p>];</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;sum: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>sum</span> <span class=o>&lt;&lt;</span> <span class=n>endl</span><span class=p>;</span>
+            <span class=k>if</span> <span class=p>(</span><span class=n>sum</span> <span class=o>==</span> <span class=n>k</span><span class=p>)</span>
+                <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Number of sub arrays whose sum is &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>k</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;: &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>count</span> <span class=o>&lt;&lt;</span><span class=n>endl</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=references>References</h2><ul><li><a href=https://www.geeksforgeeks.org/subarraysubstring-vs-subsequence-and-programs-to-generate-them/>https://www.geeksforgeeks.org/subarraysubstring-vs-subsequence-and-programs-to-generate-them/</a></li></ul></div></div></div></div></body></html>
