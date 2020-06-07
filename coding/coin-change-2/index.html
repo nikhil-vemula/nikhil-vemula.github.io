@@ -1,0 +1,130 @@
+<!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/coding/coin-change-2/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li><li class=navigation-item><a href=/coding>Coding</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/coding/>Codings</a></li><li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/coding/coin-change-2/>Coin Change 2</a></li></ol><div class=single-post><span class=title>Coin Change 2</span>
+<span class=meta><i class="far fa-calendar"></i>Jun 7, 2020 ·</span><div class=content><h2 id=recursive>Recursive</h2><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cm>/**
+</span><span class=cm>* Coin change problem
+</span><span class=cm>* Number of ways in which a given amound can be made
+</span><span class=cm>* using unlimited supply of given coins.
+</span><span class=cm>**/</span>
+
+<span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>void</span> <span class=nf>printInfo</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>);</span>
+
+<span class=kt>int</span> <span class=nf>count</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span> <span class=cm>/*ith coin*/</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>)</span> <span class=p>{</span>
+
+    <span class=n>printInfo</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>amount</span><span class=p>);</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>amount</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>amount</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=c1>// No more coins to consider
+</span><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>&gt;=</span> <span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>())</span>
+        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=c1>// We either build the amount considering the ith coin or not
+</span><span class=c1></span>    <span class=c1>// If we dont consider we try to make the amount removing the coin.
+</span><span class=c1></span>    <span class=c1>// If we consider the the amount will be reduced.
+</span><span class=c1></span>    <span class=c1>// i. dont consider ii. consider
+</span><span class=c1></span>    <span class=k>return</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span> <span class=n>amount</span><span class=p>)</span> <span class=o>+</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>printInfo</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Trying to make amount &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>amount</span> <span class=o>&lt;&lt;</span>  <span class=s>&#34; using coins: &#34;</span><span class=p>;</span>
+    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>idx</span> <span class=o>=</span> <span class=n>i</span><span class=p>;</span> <span class=n>idx</span> <span class=o>&lt;</span> <span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>idx</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>coins</span><span class=p>[</span><span class=n>idx</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>coins</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>};</span>
+    <span class=kt>int</span> <span class=n>amount</span> <span class=o>=</span> <span class=mi>5</span><span class=p>;</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span>
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=top-down>Top down</h2><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cm>/**
+</span><span class=cm>* Coin change problem
+</span><span class=cm>* Number of ways in which a given amound can be made
+</span><span class=cm>* using unlimited supply of given coins.
+</span><span class=cm>**/</span>
+
+<span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>void</span> <span class=nf>printInfo</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>);</span>
+<span class=kt>bool</span> <span class=nf>checkBoundaries</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;&amp;</span> <span class=n>mem</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>j</span><span class=p>);</span>
+
+<span class=kt>int</span> <span class=nf>count</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;&amp;</span> <span class=n>mem</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span> <span class=cm>/*ith coin*/</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>)</span> <span class=p>{</span>
+
+    <span class=n>printInfo</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>amount</span><span class=p>);</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>amount</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+
+    <span class=k>if</span> <span class=p>(</span><span class=n>amount</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span>
+        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=c1>// No more coins to consider
+</span><span class=c1></span>    <span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>&gt;=</span> <span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>())</span>
+        <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+
+    <span class=c1>// We either build the amount considering the ith coin or not
+</span><span class=c1></span>    <span class=c1>// If we dont consider we try to make the amount removing the coin.
+</span><span class=c1></span>    <span class=c1>// If we consider the the amount will be reduced.
+</span><span class=c1></span>    <span class=c1>// i. dont consider ii. consider
+</span><span class=c1></span>
+    <span class=c1>// Look if subproblem is already solved or not
+</span><span class=c1></span>
+    <span class=kt>int</span> <span class=n>notConsideringIthCoin</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>if</span><span class=p>(</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span> <span class=o>&lt;=</span> <span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>())</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>][</span><span class=n>amount</span><span class=p>]</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+            <span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>][</span><span class=n>amount</span><span class=p>]</span> <span class=o>=</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>mem</span><span class=p>,</span> <span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span> <span class=n>amount</span><span class=p>);</span>
+        <span class=n>notConsideringIthCoin</span> <span class=o>=</span> <span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>][</span><span class=n>amount</span><span class=p>];</span>
+    <span class=p>}</span>
+
+    <span class=kt>int</span> <span class=n>consideringIthCoin</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>if</span><span class=p>(</span><span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&gt;=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=p>(</span><span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]]</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+            <span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]]</span> <span class=o>=</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>mem</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
+        <span class=n>consideringIthCoin</span> <span class=o>=</span> <span class=n>mem</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>amount</span> <span class=o>-</span> <span class=n>coins</span><span class=p>[</span><span class=n>i</span><span class=p>]];</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=n>consideringIthCoin</span> <span class=o>+</span> <span class=n>notConsideringIthCoin</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>bool</span> <span class=nf>checkBoundaries</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;&amp;</span> <span class=n>mem</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>j</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// i -&gt; coin_index
+</span><span class=c1></span>    <span class=c1>// j -&gt; amount
+</span><span class=c1></span>    <span class=c1>// cout &lt;&lt; i &lt;&lt; &#34; &#34; &lt;&lt; j &lt;&lt; &#34;\n&#34;;
+</span><span class=c1></span>    <span class=k>if</span><span class=p>(</span><span class=n>i</span> <span class=o>&lt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=n>i</span> <span class=o>&gt;=</span> <span class=n>mem</span><span class=p>.</span><span class=n>size</span><span class=p>()</span><span class=o>||</span> <span class=n>j</span> <span class=o>&gt;=</span> <span class=n>mem</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=n>size</span><span class=p>())</span>
+        <span class=k>return</span> <span class=nb>false</span><span class=p>;</span>
+    <span class=k>return</span> <span class=nb>true</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>void</span> <span class=nf>printInfo</span><span class=p>(</span><span class=k>const</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&amp;</span> <span class=n>coins</span><span class=p>,</span> <span class=kt>int</span> <span class=n>i</span><span class=p>,</span> <span class=kt>int</span> <span class=n>amount</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;Trying to make amount &#34;</span> <span class=o>&lt;&lt;</span> <span class=n>amount</span> <span class=o>&lt;&lt;</span>  <span class=s>&#34; using coins: &#34;</span><span class=p>;</span>
+    <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>idx</span> <span class=o>=</span> <span class=n>i</span><span class=p>;</span> <span class=n>idx</span> <span class=o>&lt;</span> <span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>();</span> <span class=n>idx</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>coins</span><span class=p>[</span><span class=n>idx</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>coins</span> <span class=o>=</span> <span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>};</span>
+    <span class=kt>int</span> <span class=n>amount</span> <span class=o>=</span> <span class=mi>500</span><span class=p>;</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>amountArr</span><span class=p>(</span><span class=n>amount</span><span class=o>+</span><span class=mi>1</span><span class=p>);</span>
+    <span class=n>fill</span><span class=p>(</span><span class=n>amountArr</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span> <span class=n>amountArr</span><span class=p>.</span><span class=n>end</span><span class=p>(),</span> <span class=o>-</span><span class=mi>1</span><span class=p>);</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span> <span class=n>mem</span><span class=p>(</span><span class=n>coins</span><span class=p>.</span><span class=n>size</span><span class=p>()</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span> <span class=n>amountArr</span><span class=p>);</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>count</span><span class=p>(</span><span class=n>coins</span><span class=p>,</span> <span class=n>mem</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>amount</span><span class=p>);</span>
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div></div></div></div></div></body></html>
