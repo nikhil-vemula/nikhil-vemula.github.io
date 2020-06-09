@@ -1,0 +1,70 @@
+<!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/posts/js_weird_parts/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li><li class=navigation-item><a href=/coding>Coding</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/posts/>Posts</a></li><li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/posts/js_weird_parts/>Javascript</a></li></ol><div class=single-post><span class=title>Javascript</span>
+<span class=meta><i class="far fa-calendar"></i>Jun 7, 2020 ·</span><div class=content><h2 id=global-object-and-this-object>Global object and this object</h2><p>A default global object and this object are created by the javascript engine by default.</p><h3 id=hoisitng>Hoisitng</h3><p>There two phases when the javascript code is run, declaration and execution. During the declaration phase memory is allocated for all the functions and variables as name/value pairs.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>myVar</span><span class=p>);</span>
+<span class=nx>b</span><span class=p>();</span>
+
+<span class=kd>var</span> <span class=nx>myVar</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+<span class=kd>function</span> <span class=nx>b</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Hello!&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=lexical-scoping>Lexical scoping</h3><p>The place where the function or variable is defined matters.</p><h3 id=execution-context-stack>Execution context stack</h3><p>It is created for each function invocation. Declaration and execution phases runs for each invocation again.</p><h3 id=scope-chain>Scope chain</h3><p>If the variable is not found in the current scope, then it searches in the scope where the function is defined(not called).</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>b</span><span class=p>(){</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>myVar</span><span class=p>);</span>
+<span class=p>}</span>
+
+<span class=kd>function</span> <span class=nx>a</span><span class=p>(){</span>
+    <span class=kd>var</span> <span class=nx>myVar</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span>
+    <span class=nx>b</span><span class=p>();</span>
+<span class=p>}</span>
+
+<span class=kd>var</span> <span class=nx>myVar</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+<span class=nx>a</span><span class=p>();</span>
+</code></pre></div><h3 id=javascript-is-dynamic-typed-language>Javascript is dynamic typed language</h3><h3 id=coercion>Coercion</h3><p>Use <code>===</code> for strict comparison.</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=mi>3</span> <span class=o>&lt;</span> <span class=mi>2</span> <span class=o>&lt;</span> <span class=mi>1</span>
+</code></pre></div><h3 id=existence-check>Existence check</h3><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=k>if</span> <span class=p>(</span><span class=nx>myVar</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// myVar != undefined, null or &#34;&#34;
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></div><h3 id=objects>Objects</h3><p>Objects can have 3 types as properties</p><ul><li>Primitive</li><li>Object</li><li>Function</li></ul><h3 id=json-and-object>JSON and Object</h3><p>JSON: Javascript object notation.
+All JSON&rsquo;s are objects but not vice versa.</p><h3 id=functions>Functions</h3><ul><li>Functions are first class citzens in javascript (Things that can be performed on objects can also be performed on the functions).</li></ul><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>greet</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Hello!&#34;</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=c1>// Language property is assigned to the greet function object.
+</span><span class=c1></span><span class=nx>greet</span><span class=p>.</span><span class=nx>language</span> <span class=o>=</span> <span class=s2>&#34;english&#34;</span><span class=p>;</span>
+</code></pre></div><ul><li><p>Functions can have following properties</p><ul><li>Primitive</li><li>Object</li><li>Function</li><li>Name</li><li>Code</li></ul></li><li><p>Function statement vs Function expression</p><table><thead><tr><th>statement</th><th>expression</th></tr></thead><tbody><tr><td><code>function greet() {console.log("hello")}</code></td><td><code>var greet = function() {console.log("hello")}</code></td></tr></tbody></table></li><li><p>Function and this</p></li></ul><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+
+<span class=kd>function</span> <span class=nx>a</span><span class=p>(){</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=nx>a</span><span class=p>();</span>
+
+<span class=nx>b</span> <span class=o>=</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+<span class=p>};</span>
+<span class=nx>b</span><span class=p>();</span>
+
+<span class=kd>var</span> <span class=nx>c</span> <span class=o>=</span> <span class=p>{</span>
+ <span class=nx>fn</span><span class=o>:</span> <span class=kd>function</span><span class=p>(){</span>
+     <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+     <span class=kd>function</span> <span class=nx>d</span><span class=p>(){</span>
+         <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+     <span class=p>}</span>
+     <span class=nx>d</span><span class=p>();</span>
+ <span class=p>}</span>
+<span class=p>}</span>
+<span class=nx>c</span><span class=p>.</span><span class=nx>fn</span><span class=p>();</span>
+</code></pre></div><h3 id=automatic--insertion>Automatic <code>';'</code> insertion</h3><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>getPerson</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>return</span>
+    <span class=p>{</span>
+        <span class=nx>firstName</span> <span class=o>=</span> <span class=s2>&#34;Nick&#34;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=iife>IIFE</h3><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+    <span class=kd>var</span> <span class=nx>privateVar</span> <span class=o>=</span> <span class=s2>&#34;hello&#34;</span><span class=p>;</span>
+<span class=p>}());</span>
+</code></pre></div><h3 id=closures>Closures</h3><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>greet</span><span class=p>(</span><span class=nx>whattosay</span><span class=p>){</span>
+    <span class=k>return</span> <span class=kd>function</span><span class=p>(</span><span class=nx>name</span><span class=p>){</span>
+        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>whattosay</span> <span class=o>+</span> <span class=s1>&#39; &#39;</span> <span class=o>+</span> <span class=nx>name</span><span class=p>);</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=call-apply-and-bind>call, apply and bind</h3><p>While creating the execution context, point <code>this</code> to some other object instead of window.</p><h3 id=currying>Currying</h3><p>Creating a copy of function with some preset parameters</p><div class=highlight><pre class=chroma><code class=language-js data-lang=js><span class=kd>function</span> <span class=nx>multiply</span><span class=p>(</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>a</span><span class=o>*</span><span class=nx>b</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=kd>let</span> <span class=nx>multiplyBy2</span> <span class=o>=</span> <span class=nx>multiply</span><span class=p>.</span><span class=nx>bind</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=mi>2</span><span class=p>);</span> <span class=c1>// Set a value permanently to 2
+</span></code></pre></div><h3 id=functional-programming>Functional programming</h3><h3 id=prototypal-inheritance>Prototypal inheritance</h3><p>Each object has a proto property</p><h2 id=references>References</h2><p><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness</a></p></div></div></div></div></body></html>
