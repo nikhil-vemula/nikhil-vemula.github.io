@@ -1,0 +1,82 @@
+<!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/coding/bellman-ford/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li><li class=navigation-item><a href=/coding>Coding</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/coding/>Codings</a></li><li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/coding/bellman-ford/>Bellman Ford</a></li></ol><div class=single-post><span class=title>Bellman Ford</span>
+<span class=meta><i class="far fa-calendar"></i>Jun 14, 2020 ·</span><div class=content><div class=highlight><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cm>/**
+</span><span class=cm>* Bellman Ford
+</span><span class=cm>*/</span>
+
+<span class=cp>#include</span> <span class=cpf>&lt;iostream&gt;</span><span class=cp>
+</span><span class=cp>#include</span> <span class=cpf>&lt;vector&gt;</span><span class=cp>
+</span><span class=cp></span>
+<span class=k>using</span> <span class=k>namespace</span> <span class=n>std</span><span class=p>;</span>
+
+<span class=kt>void</span> <span class=nf>BellmanFord</span><span class=p>(</span><span class=n>WeightedGraph</span><span class=o>*</span> <span class=n>graph</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=kt>double</span><span class=o>&gt;</span> <span class=n>dist</span><span class=p>(</span><span class=n>graph</span><span class=o>-&gt;</span><span class=n>v</span><span class=p>);</span>
+    <span class=c1>// Fill the distance array with infinity
+</span><span class=c1></span>    <span class=n>fill</span><span class=p>(</span><span class=n>dist</span><span class=p>.</span><span class=n>begin</span><span class=p>(),</span> <span class=n>dist</span><span class=p>.</span><span class=n>end</span><span class=p>(),</span> <span class=n>numeric_limits</span><span class=o>&lt;</span><span class=kt>double</span><span class=o>&gt;::</span><span class=n>infinity</span><span class=p>());</span>
+    <span class=n>dist</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=c1>// For v-1 times relax the edges
+</span><span class=c1></span>    <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>r</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>r</span> <span class=o>&lt;</span> <span class=n>graph</span><span class=o>-&gt;</span><span class=n>v</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=n>r</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+        <span class=c1>// For all edges calc the new distance value
+</span><span class=c1></span>        <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>graph</span><span class=o>-&gt;</span><span class=n>v</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>graph</span><span class=o>-&gt;</span><span class=n>v</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+                <span class=k>if</span> <span class=p>(</span><span class=n>graph</span><span class=o>-&gt;</span><span class=n>edges</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>j</span><span class=p>]</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+                    <span class=k>if</span> <span class=p>(</span><span class=n>dist</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>+</span> <span class=n>graph</span><span class=o>-&gt;</span><span class=n>edges</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>j</span><span class=p>]</span> <span class=o>&lt;</span> <span class=n>dist</span><span class=p>[</span><span class=n>j</span><span class=p>])</span> <span class=p>{</span>
+                        <span class=n>dist</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>dist</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>+</span> <span class=n>graph</span><span class=o>-&gt;</span><span class=n>edges</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>j</span><span class=p>];</span>
+                    <span class=p>}</span>
+                <span class=p>}</span>
+            <span class=p>}</span>
+        <span class=p>}</span>
+        <span class=k>for</span><span class=p>(</span><span class=kt>double</span> <span class=nl>i</span><span class=p>:</span> <span class=n>dist</span><span class=p>)</span> <span class=p>{</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>i</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+        <span class=p>}</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=k>for</span><span class=p>(</span><span class=kt>double</span> <span class=nl>i</span><span class=p>:</span> <span class=n>dist</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>i</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=k>class</span> <span class=nc>WeightedGraph</span> <span class=p>{</span>
+    <span class=k>public</span><span class=o>:</span>
+    <span class=kt>int</span> <span class=n>v</span><span class=p>;</span>
+    <span class=kt>int</span> <span class=n>e</span><span class=p>;</span>
+    <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span> <span class=n>edges</span><span class=p>;</span>
+
+    <span class=n>WeightedGraph</span><span class=p>(</span><span class=kt>int</span> <span class=n>v</span><span class=p>,</span> <span class=kt>int</span> <span class=n>e</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>this</span><span class=o>-&gt;</span><span class=n>v</span> <span class=o>=</span> <span class=n>v</span><span class=p>;</span>
+        <span class=k>this</span><span class=o>-&gt;</span><span class=n>e</span> <span class=o>=</span> <span class=n>e</span><span class=p>;</span>
+        <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span> <span class=n>edge</span> <span class=o>=</span> <span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;</span><span class=p>(</span><span class=n>v</span><span class=p>);</span>
+        <span class=k>this</span><span class=o>-&gt;</span><span class=n>edges</span> <span class=o>=</span> <span class=n>vector</span><span class=o>&lt;</span><span class=n>vector</span><span class=o>&lt;</span><span class=kt>int</span><span class=o>&gt;&gt;</span><span class=p>(</span><span class=n>v</span><span class=p>,</span> <span class=n>edge</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=kt>void</span> <span class=nf>addEdge</span><span class=p>(</span><span class=kt>int</span> <span class=n>u</span><span class=p>,</span> <span class=kt>int</span> <span class=n>v</span><span class=p>,</span> <span class=kt>int</span> <span class=n>w</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>edges</span><span class=p>[</span><span class=n>u</span><span class=o>-</span><span class=mi>1</span><span class=p>][</span><span class=n>v</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=n>w</span><span class=p>;</span>
+    <span class=p>}</span>
+
+    <span class=kt>void</span> <span class=nf>print</span><span class=p>()</span> <span class=p>{</span>
+        <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>v</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+            <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span><span class=o>=</span><span class=mi>0</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>v</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+                <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=n>edges</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>j</span><span class=p>]</span> <span class=o>&lt;&lt;</span> <span class=s>&#34; &#34;</span><span class=p>;</span>
+            <span class=p>}</span>
+            <span class=n>cout</span> <span class=o>&lt;&lt;</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>};</span>
+
+<span class=kt>int</span> <span class=nf>main</span><span class=p>()</span>
+<span class=p>{</span>
+    <span class=n>WeightedGraph</span> <span class=o>*</span><span class=n>graph</span> <span class=o>=</span> <span class=k>new</span> <span class=n>WeightedGraph</span><span class=p>(</span><span class=mi>7</span><span class=p>,</span> <span class=mi>10</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>6</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>6</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>5</span><span class=p>,</span> <span class=mi>7</span><span class=p>,</span> <span class=mi>3</span><span class=p>);</span>
+    <span class=n>graph</span><span class=o>-&gt;</span><span class=n>addEdge</span><span class=p>(</span><span class=mi>6</span><span class=p>,</span> <span class=mi>7</span><span class=p>,</span> <span class=mi>3</span><span class=p>);</span>
+    <span class=n>BellmanFord</span><span class=p>(</span><span class=n>graph</span><span class=p>);</span>
+    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div></div></div></div></div></body></html>
