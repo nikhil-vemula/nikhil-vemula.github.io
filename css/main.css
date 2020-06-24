@@ -74,7 +74,7 @@ ol.nav {
 }
 
 #breadcrumbnav::after {
-	content: ">";
+	content: " >";
 }
 
 #breadcrumbnav:last-child::after {
