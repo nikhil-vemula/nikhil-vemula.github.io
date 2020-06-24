@@ -256,3 +256,13 @@ ul.posts {
 	text-align: justify;
 	text-justify: inter-word;
 }
+
+.content a{
+	color: #5c6ac4;
+	font-weight: 1000;
+}
+
+.content a:hover {
+	text-decoration: none;
+	border-bottom: 2px solid #5c6ac4;
+}
