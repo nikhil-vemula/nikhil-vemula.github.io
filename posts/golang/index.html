@@ -1,14 +1,56 @@
 <!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=icon type=image/png href=https://nikhil-vemula.github.io/favicon.ico><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/posts/golang/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li><li class=navigation-item><a href=/coding>Coding</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li>&nbsp;<li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/posts/>Posts</a></li>&nbsp;<li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/posts/golang/>Go lang</a></li>&nbsp;</ol><div class=single-post><span class=title>Go lang</span>
-<span class=meta><i class="far fa-calendar"></i>&nbsp;Jun 7, 2020 ·</span><div class=content><ul><li>Go lang is strong and statically typed.</li></ul><h2 id=features>Features</h2><ul><li>Simplicity</li><li>Fast compile times</li><li>Garbage collection</li><li>Built in cocunrrency</li><li>Compiles to standalone libraries.</li></ul><h2 id=code-organization>Code organization</h2><blockquote><p><a href=https://golang.org/doc/code.html>https://golang.org/doc/code.html</a></p></blockquote><p>Summary</p><ul><li>Go programs are organized into packages.</li><li>A package is a collection of source files in the same directory that are compiled together.</li><li>Functions, types, variables, and constants defined in one source file are visible to all other source files within the same package.</li></ul><h2 id=variables>Variables</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class=meta><i class="far fa-calendar"></i>&nbsp;Jun 7, 2020 ·</span><div class=content><ul><li>Go lang is strong and statically typed.</li><li>Go is not Object oriented programming language.</li></ul><h2 id=features>Features</h2><ul><li>Simplicity</li><li>Fast compile times</li><li>Garbage collection</li><li>Built in cocunrrency</li><li>Compiles to standalone libraries.</li></ul><h2 id=hello-world>Hello world</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Hello world!!&#34;</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash>go run main.go
+</code></pre></div><h3 id=go-cli>Go CLI</h3><ul><li>go build : compiles a bunch of source files</li><li>go run : compiles and run</li><li>go fmt : Format the code</li><li>go install : Compiles and installs a package</li><li>go get : Downloads source code of someone ele&rsquo;s package.</li><li>go test : Run tests associated with project</li></ul><h3 id=parts-of-hello-world>Parts of hello world</h3><h4 id=package>Package</h4><p>Group the source files together some thing like namespace</p><p>Types:</p><ul><li>Executable packages : <code>package main</code> and <code>func main()</code> makes it executable packages.</li><li>Reusable packages</li></ul><h4 id=import>Import</h4><p>Import other packages to use it in the program.</p><blockquote><p>Standard packages at <a href=https://golang.org/pkg/>https://golang.org/pkg/</a></p></blockquote><h2 id=variables>Variables</h2><p>Go is static type language.</p><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
 
 <span class=kd>var</span> <span class=nx>i</span> <span class=kt>float32</span> <span class=p>=</span> <span class=mi>32</span> <span class=c1>// Global
 </span><span class=c1></span><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
     <span class=kd>var</span> <span class=nx>i</span> <span class=kt>int</span> <span class=p>=</span> <span class=mi>10</span><span class=p>;</span> <span class=c1>// Explicit type specification
-</span><span class=c1></span>    <span class=nx>i</span><span class=o>:=</span> <span class=mi>10</span><span class=p>;</span> <span class=c1>// Implicit type infered
+</span><span class=c1></span>    <span class=nx>i</span> <span class=o>:=</span> <span class=mi>10</span><span class=p>;</span> <span class=c1>// Implicit type infered
+</span><span class=c1></span>    <span class=nx>i</span> <span class=p>=</span> <span class=mi>20</span> <span class=c1>// Assignment
 </span><span class=c1></span><span class=p>}</span>
-</code></pre></div><h3 id=primitives>Primitives</h3><ul><li>Boolean</li><li>Numeric<ul><li>Integer</li><li>Floating</li><li>Complex number</li></ul></li><li>Text</li></ul><h2 id=arrays-and-slices>Arrays and slices</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>fruits</span> <span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=kt>string</span> <span class=c1>// Array
+</code></pre></div><h3 id=primitives>Primitives</h3><ul><li>Boolean</li><li>Numeric<ul><li>Integer</li><li>Floating</li><li>Complex number</li></ul></li><li>Text</li></ul><h2 id=arrays-and-slices>Arrays and slices</h2><p>Array : Fixed size
+Slice : Can grow or shrink. But all the elements should be of same type.</p><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>fruits</span> <span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=kt>string</span> <span class=c1>// Array
 </span><span class=c1></span><span class=kd>var</span> <span class=nx>fruits</span> <span class=p>[]</span><span class=kt>string</span> <span class=c1>// Slice
-</span></code></pre></div><h2 id=maps>Maps</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>details</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;fname&#34;</span><span class=p>:</span><span class=s>&#34;nikhil&#34;</span><span class=p>,</span> <span class=s>&#34;lname&#34;</span><span class=p>:</span><span class=s>&#34;vemula&#34;</span><span class=p>}</span>
+</span></code></pre></div><h2 id=functions>Functions</h2><p>We need to annotate the return value type.</p><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>add</span><span class=p>(</span><span class=nx>a</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>b</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=nx>a</span> <span class=o>+</span> <span class=nx>b</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><h3 id=recievers-function>Recievers Function</h3><p>Any variable of type deck will have access to function print.</p><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>d</span> <span class=nx>deck</span><span class=p>)</span> <span class=nb>print</span><span class=p>()</span> <span class=p>{</span>
+
+<span class=p>}</span>
+</code></pre></div><h3 id=multiple-return-values>Multiple return values</h3><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>chooseYourPokemon</span><span class=p>()</span> <span class=p>(</span><span class=kt>string</span><span class=p>,</span> <span class=kt>string</span><span class=p>,</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=s>&#34;Charmander&#34;</span><span class=p>,</span> <span class=s>&#34;Bulbusar&#34;</span><span class=p>,</span> <span class=s>&#34;Squirtle&#34;</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=structs>Structs</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>struct</span> <span class=nx>Person</span><span class=p>{</span>
+  <span class=nx>fname</span> <span class=kt>string</span>
+  <span class=nx>lname</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=c1>// Valure reciever
+</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=nx>Person</span><span class=p>)</span> <span class=nf>greet</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=s>&#34;Hello&#34;</span> <span class=o>+</span> <span class=nx>p</span><span class=p>.</span><span class=nx>fname</span>
+<span class=p>}</span>
+
+<span class=kd>var</span> <span class=nx>person</span> <span class=p>=</span> <span class=nx>Person</span><span class=p>{</span><span class=nx>fname</span><span class=p>:</span> <span class=s>&#34;nikhil&#34;</span><span class=p>,</span> <span class=nx>lname</span><span class=p>:</span> <span class=s>&#34;vemula&#34;</span><span class=p>}</span>
+</code></pre></div><h2 id=pointers>Pointers</h2><p>Go is a pass by value language</p><blockquote><p><code>* : Dereferences a pointer</code><br><code>& : Address of the type</code></p></blockquote><ul><li>Value types: int, float, string, bool, structs</li><li>Reference types: slices, maps, channels, pointers, functions</li></ul><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+  <span class=nx>a</span><span class=o>:=</span> <span class=mi>5</span>
+  <span class=nx>b</span><span class=o>:=</span> <span class=o>&amp;</span><span class=nx>a</span>
+
+  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b</span><span class=p>);</span> <span class=c1>// address
+</span><span class=c1></span>  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>*</span><span class=nx>b</span><span class=p>);</span> <span class=c1>// Value
+</span><span class=c1></span>
+  <span class=o>*</span><span class=nx>b</span> <span class=o>:=</span> <span class=mi>10</span>
+  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></div><h2 id=maps>Maps</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>details</span> <span class=o>:=</span> <span class=kd>map</span><span class=p>[</span><span class=kt>string</span><span class=p>]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;fname&#34;</span><span class=p>:</span><span class=s>&#34;nikhil&#34;</span><span class=p>,</span> <span class=s>&#34;lname&#34;</span><span class=p>:</span><span class=s>&#34;vemula&#34;</span><span class=p>}</span>
 </code></pre></div><h3 id=range>Range</h3><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>ids</span><span class=o>:=</span> <span class=p>[]</span><span class=kt>int</span><span class=p>{</span><span class=mi>12</span><span class=p>,</span> <span class=mi>13</span><span class=p>,</span> <span class=mi>14</span><span class=p>,</span> <span class=mi>15</span><span class=p>}</span>
 
 <span class=k>for</span> <span class=nx>i</span><span class=p>,</span> <span class=nx>id</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>ids</span> <span class=p>{</span>
@@ -24,27 +66,4 @@
 <span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>details</span> <span class=p>{</span>
   <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;%s: %s&#34;</span><span class=p>,</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span><span class=p>);</span>
 <span class=p>}</span>
-</code></pre></div><h2 id=pointers>Pointers</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
-
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-  <span class=nx>a</span><span class=o>:=</span> <span class=mi>5</span>
-  <span class=nx>b</span><span class=o>:=</span> <span class=o>&amp;</span><span class=nx>a</span>
-
-  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b</span><span class=p>);</span> <span class=c1>// address
-</span><span class=c1></span>  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>*</span><span class=nx>b</span><span class=p>);</span> <span class=c1>// Value
-</span><span class=c1></span>
-  <span class=o>*</span><span class=nx>b</span> <span class=o>:=</span> <span class=mi>10</span>
-  <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span>
-<span class=p>}</span>
-</code></pre></div><h2 id=closures>Closures</h2><h2 id=structs>Structs</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>struct</span> <span class=nx>Person</span><span class=p>{</span>
-  <span class=nx>fname</span> <span class=kt>string</span>
-  <span class=nx>lname</span> <span class=kt>string</span>
-<span class=p>}</span>
-
-<span class=c1>// Valure reciever
-</span><span class=c1></span><span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=nx>Person</span><span class=p>)</span> <span class=nf>greet</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
-  <span class=k>return</span> <span class=s>&#34;Hello&#34;</span> <span class=o>+</span> <span class=nx>p</span><span class=p>.</span><span class=nx>fname</span>
-<span class=p>}</span>
-
-<span class=kd>var</span> <span class=nx>person</span> <span class=p>=</span> <span class=nx>Person</span><span class=p>{</span><span class=nx>fname</span><span class=p>:</span> <span class=s>&#34;nikhil&#34;</span><span class=p>,</span> <span class=nx>lname</span><span class=p>:</span> <span class=s>&#34;vemula&#34;</span><span class=p>}</span>
-</code></pre></div><h2 id=interfaces>Interfaces</h2></div></div></div></div></body></html>
+</code></pre></div><h2 id=closures>Closures</h2><h2 id=interfaces>Interfaces</h2><p>An interface type is defined by a set of methods. A value of interface type can hold any value that implements those methods.</p><h2 id=code-organization>Code organization</h2><blockquote><p><a href=https://golang.org/doc/code.html>https://golang.org/doc/code.html</a></p></blockquote><p>Summary</p><ul><li>Go programs are organized into packages.</li><li>A package is a collection of source files in the same directory that are compiled together.</li><li>Functions, types, variables, and constants defined in one source file are visible to all other source files within the same package.</li></ul></div></div></div></div></body></html>
