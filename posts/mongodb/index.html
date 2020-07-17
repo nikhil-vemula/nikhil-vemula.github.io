@@ -1,0 +1,89 @@
+<!doctype html><html><head><title>Nikhil Vemula</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content><base href=https://nikhil-vemula.github.io/><link rel=icon type=image/png href=https://nikhil-vemula.github.io/favicon.ico><link rel=stylesheet href=https://nikhil-vemula.github.io/css/main.css><link rel=canonical href=https://nikhil-vemula.github.io/posts/mongodb/><link rel=stylesheet href=https://nikhil-vemula.github.io/css/fontawesome.css><link rel=stylesheet href=https://nikhil-vemula.github.io/css/syntax.css></head><body><nav class=navigation><section class=container><div class=navigation-list><a class=navigation-title href=/>Nikhil Vemula</a><ul class=navigation-list><li class=navigation-item><a href=/>Home</a></li><li class=navigation-item><a href=/posts>All posts</a></li><li class=navigation-item><a href=/coding>Coding</a></li></ul></div></section></nav><div id=content><div id=content-wrap><ol class="nav navbar-nav"><li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/>Home</a></li>&nbsp;<li id=breadcrumbnav><a href=https://nikhil-vemula.github.io/posts/>Posts</a></li>&nbsp;<li id=breadcrumbnav class=active><a href=https://nikhil-vemula.github.io/posts/mongodb/>Mongodb</a></li>&nbsp;</ol><div class=single-post><span class=title>Mongodb</span>
+<span class=meta><i class="far fa-calendar"></i>&nbsp;Jul 16, 2020 ·</span><div class=content><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash>brew services start mongodb-community@4.2
+brew services stop mongodb-community@4.2
+</code></pre></div><p><a href=https://www.mongodb.com/blog/post/mongodb-go-driver-tutorial>https://www.mongodb.com/blog/post/mongodb-go-driver-tutorial</a></p><h2 id=introduction>Introduction</h2><ul><li>Collection is a table</li><li>Document is a record</li></ul><h2 id=creating-a-connection>Creating a connection</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=c1>// Set client options
+</span><span class=c1></span><span class=nx>clientOptions</span> <span class=o>:=</span> <span class=nx>options</span><span class=p>.</span><span class=nf>Client</span><span class=p>().</span><span class=nf>ApplyURI</span><span class=p>(</span><span class=s>&#34;mongodb://localhost:27017&#34;</span><span class=p>)</span>
+
+<span class=c1>// Connect to MongoDB
+</span><span class=c1></span><span class=nx>client</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>mongo</span><span class=p>.</span><span class=nf>Connect</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>clientOptions</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=c1>// Check the connection
+</span><span class=c1></span><span class=nx>err</span> <span class=p>=</span> <span class=nx>client</span><span class=p>.</span><span class=nf>Ping</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=kc>nil</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Connected to MongoDB!&#34;</span><span class=p>)</span>
+</code></pre></div><h2 id=open-or-create-collection>Open or create collection</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>collection</span> <span class=o>:=</span> <span class=nx>client</span><span class=p>.</span><span class=nf>Database</span><span class=p>(</span><span class=s>&#34;test&#34;</span><span class=p>).</span><span class=nf>Collection</span><span class=p>(</span><span class=s>&#34;trainers&#34;</span><span class=p>)</span>
+</code></pre></div><h2 id=inserting-one-document>Inserting one document</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>ash</span> <span class=o>:=</span> <span class=nx>Trainer</span><span class=p>{</span><span class=s>&#34;Ash&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=s>&#34;Pallet Town&#34;</span><span class=p>}</span>
+<span class=nx>insertResult</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>InsertOne</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>ash</span><span class=p>)</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Inserted a single document: &#34;</span><span class=p>,</span> <span class=nx>insertResult</span><span class=p>.</span><span class=nx>InsertedID</span><span class=p>)</span>
+</code></pre></div><h2 id=inserting-multiple-document>Inserting multiple document</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>misty</span> <span class=o>:=</span> <span class=nx>Trainer</span><span class=p>{</span><span class=s>&#34;Misty&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=s>&#34;Cerulean City&#34;</span><span class=p>}</span>
+<span class=nx>brock</span> <span class=o>:=</span> <span class=nx>Trainer</span><span class=p>{</span><span class=s>&#34;Brock&#34;</span><span class=p>,</span> <span class=mi>15</span><span class=p>,</span> <span class=s>&#34;Pewter City&#34;</span><span class=p>}</span>
+
+<span class=nx>trainers</span> <span class=o>:=</span> <span class=p>[]</span><span class=kd>interface</span><span class=p>{}{</span><span class=nx>misty</span><span class=p>,</span> <span class=nx>brock</span><span class=p>}</span>
+
+<span class=nx>insertManyResult</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>InsertMany</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>trainers</span><span class=p>)</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Inserted multiple documents: &#34;</span><span class=p>,</span> <span class=nx>insertManyResult</span><span class=p>.</span><span class=nx>InsertedIDs</span><span class=p>)</span>
+</code></pre></div><h2 id=update-a-document>Update a document</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>filter</span> <span class=o>:=</span> <span class=nx>bson</span><span class=p>.</span><span class=nx>D</span><span class=p>{{</span><span class=s>&#34;name&#34;</span><span class=p>,</span> <span class=s>&#34;Ash&#34;</span><span class=p>}}</span>
+<span class=nx>update</span> <span class=o>:=</span> <span class=nx>bson</span><span class=p>.</span><span class=nx>D</span><span class=p>{</span>
+    <span class=p>{</span><span class=s>&#34;$inc&#34;</span><span class=p>,</span> <span class=nx>bson</span><span class=p>.</span><span class=nx>D</span><span class=p>{</span>
+        <span class=p>{</span><span class=s>&#34;age&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>},</span>
+    <span class=p>}},</span>
+<span class=p>}</span>
+<span class=nx>updateResult</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>UpdateOne</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>filter</span><span class=p>,</span> <span class=nx>update</span><span class=p>)</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Updated &#34;</span><span class=p>,</span> <span class=nx>updateResult</span><span class=p>.</span><span class=nx>MatchedCount</span><span class=p>)</span>
+</code></pre></div><h2 id=find-one-document>Find one document</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>result</span> <span class=nx>Trainer</span>
+
+<span class=nx>err</span> <span class=p>=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>FindOne</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>filter</span><span class=p>).</span><span class=nf>Decode</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>result</span><span class=p>)</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span>
+</code></pre></div><h2 id=find-multiple-documents>Find multiple documents</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>findOptions</span> <span class=o>:=</span> <span class=nx>options</span><span class=p>.</span><span class=nf>Find</span><span class=p>()</span>
+	<span class=nx>findOptions</span><span class=p>.</span><span class=nf>SetLimit</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+
+	<span class=kd>var</span> <span class=nx>results</span> <span class=p>[]</span><span class=nx>Trainer</span>
+
+	<span class=nx>cur</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>Find</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>bson</span><span class=p>.</span><span class=nx>D</span><span class=p>{{}},</span> <span class=nx>findOptions</span><span class=p>)</span>
+
+	<span class=k>for</span> <span class=nx>cur</span><span class=p>.</span><span class=nf>Next</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>())</span> <span class=p>{</span>
+		<span class=kd>var</span> <span class=nx>t</span> <span class=nx>Trainer</span>
+		<span class=nx>err</span> <span class=o>:=</span> <span class=nx>cur</span><span class=p>.</span><span class=nf>Decode</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>t</span><span class=p>)</span>
+		<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=p>}</span>
+		<span class=nx>results</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>results</span><span class=p>,</span> <span class=nx>t</span><span class=p>)</span>
+	<span class=p>}</span>
+
+	<span class=k>if</span> <span class=nx>cur</span><span class=p>.</span><span class=nf>Err</span><span class=p>();</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+	<span class=p>}</span>
+
+	<span class=nx>cur</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>())</span>
+
+	<span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>ptr</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>results</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ptr</span><span class=p>)</span>
+	<span class=p>}</span>
+</code></pre></div><h2 id=delete-multiple-documents>Delete multiple documents</h2><div class=highlight><pre class=chroma><code class=language-go data-lang=go><span class=nx>deleteResult</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>collection</span><span class=p>.</span><span class=nf>DeleteMany</span><span class=p>(</span><span class=nx>context</span><span class=p>.</span><span class=nf>TODO</span><span class=p>(),</span> <span class=nx>bson</span><span class=p>.</span><span class=nx>D</span><span class=p>{{}})</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatal</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Deleted %v documents in the trainers collection\n&#34;</span><span class=p>,</span> <span class=nx>deleteResult</span><span class=p>.</span><span class=nx>DeletedCount</span><span class=p>)</span>
+</code></pre></div></div></div></div></div></body></html>
