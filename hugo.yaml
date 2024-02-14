@@ -29,6 +29,9 @@ menu:
       weight: 20
 
 params:
+  defaultTheme: light
+  disableThemeToggle: true
+  ShowShareButtons: true
   ShowCodeCopyButtons: true
   
   profileMode:
