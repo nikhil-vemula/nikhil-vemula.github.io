@@ -15,6 +15,10 @@ markup:
 
 menu:
   main:
+    - identifier: hire-me
+      name: hire-me
+      url:  https://nikhilvemula.dev/resume/Nikhil%20Vemula.pdf
+      weight: 5
     - identifier: about
       name: about
       url: /
