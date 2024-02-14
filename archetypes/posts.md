@@ -1,13 +1,14 @@
 ---
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 date: {{ .Date }}
+slug: '{{ .File.ContentBaseName }}'
 tags: []
 author: "Me"
 showToc: false
 TocOpen: false
 draft: true
 hidemeta: false
-comments: false
+comments: true
 description: ""
 canonicalURL: ""
 disableHLJS: false

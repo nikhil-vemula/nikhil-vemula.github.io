@@ -8,7 +8,7 @@ showToc: true
 TocOpen: false
 draft: true
 hidemeta: false
-comments: false
+comments: true
 description: ""
 canonicalURL: ""
 disableHLJS: true
