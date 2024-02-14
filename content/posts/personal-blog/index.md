@@ -1,5 +1,6 @@
 ---
 title: 'Portfolio in 10mins'
+slug: portfolio-in-10mins
 date: 2024-02-13T21:29:44-05:00
 tags: []
 author: "Me"

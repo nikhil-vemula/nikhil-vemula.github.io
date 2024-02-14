@@ -30,7 +30,9 @@ params:
   profileMode:
     enabled: true
     title: Nikhil Vemula
-    subtitle: "I guess you found my blog. Happy to meet you. This blog would be my technical dairy of things i learn and things i find interesting to share with others."
+    subtitle: "I guess you found my blog. Happy to meet you. This blog would be my technical dairy of things i learn and things i find interesting to share with others.
+
+    I consider myself to be a Average Programmer which encourages to constantly learn new stuff."
     imageUrl: ""
     imageWidth: 120
     imageHeight: 120
