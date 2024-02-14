@@ -1,0 +1,47 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Average Programmer
+theme: PaperMod
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+menu:
+  main:
+    - identifier: about
+      name: about
+      url: /
+      weight: 10
+    - identifier: blog
+      name: blog
+      url: /posts/
+      weight: 20
+    # - identifier: projects
+    #   name: projects
+    #   url: /projects/
+    #   weight: 30
+
+params:
+  profileMode:
+    enabled: true # needs to be explicitly set
+    title: Nikhil Vemula
+    subtitle: "I guess you found my blog. Happy to meet you. This blog would be my technical dairy of things i learn and things i find interesting to share with others."
+    imageUrl: ""
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle:
+  
+  homeInfoParams:
+    Title: "About Me"
+    Content: >
+      I guess you found my blog. Happy to meet you. This blog would be my technical dairy of things i learn, things i find interesting to share with others.
+
+  socialIcons:
+    - name: linkedin
+      title: Linkedin
+      url: "https://www.linkedin.com/in/srinivasanikhil/"
+    - name: github
+      title: Github
+      url: "https://github.com/nikhil-vemula"
