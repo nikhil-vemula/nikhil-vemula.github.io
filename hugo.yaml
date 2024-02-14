@@ -1,12 +1,17 @@
-baseURL: https://example.org/
+baseURL: https://nikhilvemula.dev/
 languageCode: en-us
 title: Average Programmer
 theme: PaperMod
 
 enableRobotsTXT: true
-buildDrafts: false
+buildDrafts: true
 buildFuture: false
 buildExpired: false
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 menu:
   main:
@@ -18,14 +23,12 @@ menu:
       name: blog
       url: /posts/
       weight: 20
-    # - identifier: projects
-    #   name: projects
-    #   url: /projects/
-    #   weight: 30
 
 params:
+  ShowCodeCopyButtons: true
+  
   profileMode:
-    enabled: true # needs to be explicitly set
+    enabled: true
     title: Nikhil Vemula
     subtitle: "I guess you found my blog. Happy to meet you. This blog would be my technical dairy of things i learn and things i find interesting to share with others."
     imageUrl: ""
