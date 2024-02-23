@@ -1,7 +1,7 @@
 ---
-title: '{{ replace .File.ContentBaseName "-" " " | title }}'
-date: {{ .Date }}
-slug: '{{ .File.ContentBaseName }}'
+title: 'Bellman Ford'
+date: 2024-02-23T15:32:54-05:00
+slug: 'bellman-ford'
 tags: []
 author: "Me"
 showToc: false
@@ -28,3 +28,25 @@ cover:
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 ---
+
+```python
+# O(V*E)
+dist = [inf] * n
+dist[src] = 0
+for i in range(n-1):
+    changed = False
+    for u, v, d in edges:
+        if dist[u] + d < dist[v]:
+            dist[v] =  dist[u] + d
+            changed = True
+    if not changed:
+        break
+```
+
+### Problems
+
+### 787. Cheapest Flights Within K Stops
+
+- https://leetcode.com/problems/cheapest-flights-within-k-stops
+- Apply bellman ford for `k+1` iterations
+

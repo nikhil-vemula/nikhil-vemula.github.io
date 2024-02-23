@@ -1,8 +1,8 @@
 ---
-title: '{{ replace .File.ContentBaseName "-" " " | title }}'
-date: {{ .Date }}
-slug: '{{ .File.ContentBaseName }}'
-tags: []
+title: 'Single Source Shortest Path Algorithms'
+date: 2024-02-23T14:31:41-05:00
+slug: 'shortest-path-algos'
+tags: ['leetcode']
 author: "Me"
 showToc: false
 TocOpen: false
@@ -28,3 +28,7 @@ cover:
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 ---
+
+- [Dijkstra's single shource shortest path]({{< ref "dijkstra" >}})
+- [Bellman Ford]({{< ref "bellman-ford" >}})
+- [SPFA (Shortest Path Faster Algorithm)]({{< ref "spfa" >}})
