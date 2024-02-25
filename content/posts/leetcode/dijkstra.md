@@ -29,7 +29,9 @@ cover:
     hidden: true # only hide on current single page
 ---
 
-## Dijkstra's
+1. Initialize `dist = [inf] * n`
+2. Place `start` in a min heap
+3. For all its neighbors update the `dist[v] = dist[u] + d if dist[v] > dist[u] + d` and add to min heap
 
 ```python
 # O(V + E*log(V))
