@@ -1,6 +1,6 @@
 baseURL: https://nikhilvemula.dev/
 languageCode: en-us
-title: Average Programmer
+title: Nikhil Vemula
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -29,6 +29,7 @@ menu:
       weight: 20
 
 params:
+  customHomePage: true
   defaultTheme: light
   disableThemeToggle: true
   ShowCodeCopyButtons: true
