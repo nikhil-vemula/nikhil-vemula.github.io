@@ -78,3 +78,8 @@ class UnionFind():
 - https://leetcode.com/problems/smallest-string-with-swaps/description/
 - All the indices that are interchangeble form a component
 - For each component find string by sorting characted in the indcies of each component
+
+#### 399. Evaluate Division
+
+- https://leetcode.com/problems/evaluate-division/description/
+- Custom Union find
