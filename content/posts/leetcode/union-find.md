@@ -72,3 +72,9 @@ class UnionFind():
 - if gcd(a,b) > 1 there share a prime factor
 - For every number create undirected edge between num and its prime factors
 - Check number of components is 1
+
+#### 1202. Smallest String With Swaps
+
+- https://leetcode.com/problems/smallest-string-with-swaps/description/
+- All the indices that are interchangeble form a component
+- For each component find string by sorting characted in the indcies of each component

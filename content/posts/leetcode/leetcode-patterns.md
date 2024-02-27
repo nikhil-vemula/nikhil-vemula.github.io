@@ -67,3 +67,4 @@ cover:
 - [Sweep line]({{<ref "sweep-line">}})
 - Sqrt decomposition
 - Range queries
+- Permuation of string
