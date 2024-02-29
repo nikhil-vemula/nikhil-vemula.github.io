@@ -30,13 +30,40 @@ cover:
     hidden: true # only hide on current single page
 ---
 
-- To find the final value at the end of updated by multiple range queries. We can used [sweep line]({{<ref "sweep-line">}})
+- To find the final values of an array at the end of range updates. We can use the [sweep line]({{<ref "sweep-line">}}) technique.
 - For substring and sub array problems you can use [sliding window]()
 - For range queries with out updates we can use [pre-calculation]()
+- You can use BFS when shortest path is needed.
+
+### DP
+
+- DP where we only expand probable candidates
 
 ### Tree
 
-- Maximum height for non-root node
+- Return negative value to figure out the location of the target like [this]({{<ref "tree##2385-amount-of-time-for-binary-tree-to-be-infected">}})
+
+```python
+self.maxDistance = 0
+def dfs(node):
+    depth = 0
+    if not node:
+        return depth
+    leftDepth = dfs(node.left)
+    rightDepth = dfs(node.right)
+    if node.val == start:
+        self.maxDistance = max(leftDepth, rightDepth)
+        depth = -1
+    elif leftDepth >= 0 and rightDepth >= 0:
+        depth = max(leftDepth, rightDepth) + 1
+    else:
+        distance = abs(leftDepth) + abs(rightDepth)
+        self.maxDistance = max(self.maxDistance, distance)
+        depth = min(leftDepth, rightDepth) - 1
+    return depth
+dfs(root)
+return self.maxDistance
+```
 
 ### Graph
 
@@ -44,7 +71,9 @@ cover:
 
 1. [BFS]({{<ref "graph-bfs">}})
     - Revisiting the node based on a condition like [this]({{<ref "graph-bfs#2092-find-all-people-with-secret">}})
-2. DFS
+2. [DFS]({{<ref "graph-dfs">}})
+    - Eulerian path [here]({{<ref "graph-dfs#332-reconstruct-itinerary">}})
+    - Detecting cycle [here]({{<ref "graph-dfs#1059-all-paths-from-source-lead-to-destination">}})
 3. Level order traversal
 
 #### Shortest path
