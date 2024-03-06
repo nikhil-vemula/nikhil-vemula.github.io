@@ -2,3 +2,8 @@
   --gap: 24px;
   --main-width: 1080px;
 }
+
+.dark {
+  --theme: rgb(17 24 39);
+  --entry: rgb(31 41 55);
+}
