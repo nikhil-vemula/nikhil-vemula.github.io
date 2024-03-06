@@ -34,36 +34,29 @@ cover:
 - For substring and sub array problems you can use [sliding window]()
 - For range queries with out updates we can use [pre-calculation]()
 - You can use BFS when shortest path is needed.
+- When nothing seems to fit smart search using [binary search]({{< ref "binary-search" >}})
+
+- Matrix tricks
+    - Diagonal i == j or i + j == n
+
+### Two pointers
+
+- Merging two sorted lists. Interesting variation [here]({{<ref "two-pointers#977-squares-of-a-sorted-arraynl">}})
+
+###  Stack
+
+### Divide and conquer
+
+- Merge k sorted lists
 
 ### DP
 
 - DP where we only expand probable candidates
+- Track the items
 
 ### Tree
 
 - Return negative value to figure out the location of the target like [this]({{<ref "tree##2385-amount-of-time-for-binary-tree-to-be-infected">}})
-
-```python
-self.maxDistance = 0
-def dfs(node):
-    depth = 0
-    if not node:
-        return depth
-    leftDepth = dfs(node.left)
-    rightDepth = dfs(node.right)
-    if node.val == start:
-        self.maxDistance = max(leftDepth, rightDepth)
-        depth = -1
-    elif leftDepth >= 0 and rightDepth >= 0:
-        depth = max(leftDepth, rightDepth) + 1
-    else:
-        distance = abs(leftDepth) + abs(rightDepth)
-        self.maxDistance = max(self.maxDistance, distance)
-        depth = min(leftDepth, rightDepth) - 1
-    return depth
-dfs(root)
-return self.maxDistance
-```
 
 ### Graph
 
@@ -73,7 +66,7 @@ return self.maxDistance
     - Revisiting the node based on a condition like [this]({{<ref "graph-bfs#2092-find-all-people-with-secret">}})
 2. [DFS]({{<ref "graph-dfs">}})
     - Eulerian path [here]({{<ref "graph-dfs#332-reconstruct-itinerary">}})
-    - Detecting cycle [here]({{<ref "graph-dfs#1059-all-paths-from-source-lead-to-destination">}})
+    - Detecting cycle in directed graph[here]({{<ref "graph-dfs#1059-all-paths-from-source-lead-to-destination">}})
 3. Level order traversal
 
 #### Shortest path
@@ -94,6 +87,19 @@ return self.maxDistance
 ### Misc
 
 - [Sweep line]({{<ref "sweep-line">}})
+- [Quick select]({{<ref "quick-select">}})
 - Sqrt decomposition
 - Range queries
 - Permuation of string
+
+# Group of problems
+
+- Jump game
+- Meeting room
+- Merge lists
+    - Merge two sorted lists - Two pointer
+    - Merge k sorted lists - Divide and conquer
+- Paranthesis matching
+    - Valid paranthesis
+    - [Minimum number of paranthesis to remove to make it valid](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)
+    - [Length of longest valid paranthesis](https://leetcode.com/problems/longest-valid-parentheses/)

@@ -35,3 +35,25 @@ cover:
 #### 2385. Amount of Time for Binary Tree to Be Infected
 
 - https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+
+```python
+self.maxDistance = 0
+def dfs(node):
+    depth = 0
+    if not node:
+        return depth
+    leftDepth = dfs(node.left)
+    rightDepth = dfs(node.right)
+    if node.val == start:
+        self.maxDistance = max(leftDepth, rightDepth)
+        depth = -1
+    elif leftDepth >= 0 and rightDepth >= 0:
+        depth = max(leftDepth, rightDepth) + 1
+    else:
+        distance = abs(leftDepth) + abs(rightDepth)
+        self.maxDistance = max(self.maxDistance, distance)
+        depth = min(leftDepth, rightDepth) - 1
+    return depth
+dfs(root)
+return self.maxDistance
+```
