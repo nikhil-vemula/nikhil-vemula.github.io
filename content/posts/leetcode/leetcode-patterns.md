@@ -44,8 +44,11 @@ cover:
 
 ## Patterns
 
-### Subarray sum k
+### Prefix
 
+#### Problems
+
+- Subarray sum k
 ```python
 res = 0
 presumToCount = defaultdict(int)
@@ -59,6 +62,9 @@ for num in nums:
 return res
 ```
 
+- [1915. Number of Wonderful Substrings](https://leetcode.com/problems/number-of-wonderful-substrings/description/)
+- Similar to sub array sum equals k, but we use bitmask and xor operations on the prefix values to find the substrings with zero odd count (prefix is zero) and with 1 odd count.
+
 ### Sliding window
 
 #### Problems
@@ -66,6 +72,12 @@ return res
 - [2962. Count Subarrays Where Max Element Appears at Least K Times](https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/description/)
 - [992. Subarrays with K Different Integers](https://leetcode.com/problems/subarrays-with-k-different-integers/description/)
 - [2444. Count Subarrays With Fixed Bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/description/)
+
+### Heap
+
+#### Problems
+
+- [786. K-th Smallest Prime Fraction](https://leetcode.com/problems/k-th-smallest-prime-fraction/description/)
 
 ### BFS
 
