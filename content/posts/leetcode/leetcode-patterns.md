@@ -78,6 +78,7 @@ return res
 #### Problems
 
 - [786. K-th Smallest Prime Fraction](https://leetcode.com/problems/k-th-smallest-prime-fraction/description/)
+    - Merging k sorted lists
 
 ### BFS
 
