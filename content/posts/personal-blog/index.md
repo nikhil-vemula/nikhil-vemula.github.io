@@ -2,11 +2,12 @@
 title: 'Portfolio in 10mins'
 slug: portfolio-in-10mins
 date: 2024-02-13T21:29:44-05:00
+weight: 20
 tags: []
 author: "Me"
 showToc: true
 TocOpen: false
-draft: true
+draft: false
 hidemeta: false
 comments: true
 description: ""

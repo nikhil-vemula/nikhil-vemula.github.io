@@ -1,10 +1,10 @@
 baseURL: https://nikhilvemula.dev/
 languageCode: en-us
-title: ''
+title: 'Nikhil Vemula'
 theme: PaperMod
 
 enableRobotsTXT: true
-buildDrafts: true
+buildDrafts: false
 buildFuture: false
 buildExpired: false
 
