@@ -31,7 +31,7 @@ cover:
 
 ```
 UMPIRE
-- [U]nderstand the problem, ask qeustions and come up with corner test cases.
+- [U]nderstand the problem, ask questions and come up with corner test cases.
 - [M]atch the leetcode pattern
 - [P]lan to using pattern template and data structures
 - [I]mplement the code
