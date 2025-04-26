@@ -35,3 +35,4 @@ cover:
 #### 977. Squares of a Sorted Array
 
 - https://leetcode.com/problems/squares-of-a-sorted-array/description/
+- [2444. Count Subarrays With Fixed Bounds](/posts/leetcode/leetcode-daily/count-subarrays-with-fixed-bounds)
