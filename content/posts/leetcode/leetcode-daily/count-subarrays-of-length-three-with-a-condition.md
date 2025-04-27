@@ -1,5 +1,5 @@
 ---
-title: 'Count Subarrays of Length Three With a Condition'
+title: '3392. Count Subarrays of Length Three With a Condition'
 date: 2025-04-26T17:32:04-07:00
 slug: 'count-subarrays-of-length-three-with-a-condition'
 tags: []
