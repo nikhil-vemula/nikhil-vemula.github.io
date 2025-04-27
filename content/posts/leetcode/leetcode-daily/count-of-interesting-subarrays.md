@@ -54,6 +54,8 @@ UMPIRE
 - I thought we can break it smaller problem count subarrays whose cnt = x and apply sliding window for each x value. where x is i  * modulo + k for i in 0, 1, 2, .. and x < len(nums)
 - Sliding window will not work as there is no clear condition when to shrink the window.
 
+> Subarray ending at index i trick
+
 ### Prefix sum
 
 - We can use [prefix sum](/posts/leetcode/leetcode-patterns/prefix-sum)
