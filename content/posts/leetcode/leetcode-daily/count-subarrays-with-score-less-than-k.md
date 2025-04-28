@@ -55,7 +55,7 @@ UMPIRE
 ## Plan
 
 - For every ith idx if sum(nums[:i]) * len(nums[:i]) < k then we increase the result by (right - left + 1).
-- Because all are positive integers we can be sure that all elements start at left, left+1, left+2 .. right are valid subarrays.
+- Because of the conidition that array contains only positive integers, we can be sure that all elements that start at left, left+1, left+2 .. right are valid subarrays.
 
 
 ## Implement
