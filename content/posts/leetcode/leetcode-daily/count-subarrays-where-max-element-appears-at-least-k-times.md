@@ -73,6 +73,7 @@ for right in range(len(nums)):
         left += 1
         if freq == k:
             res += (len(nums) - right)
+return res
 
 res = 0
 mx = max(nums)
