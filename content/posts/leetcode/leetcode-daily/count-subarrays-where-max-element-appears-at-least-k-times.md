@@ -66,6 +66,20 @@ left = 0
 freq = 0
 for right in range(len(nums)):
     freq += (1 if nums[right] == mx else 0)
+    if freq == k:
+        res += (len(nums) - right)
+    while freq == k:
+        freq -= (1 if nums[left] == mx else 0)
+        left += 1
+        if freq == k:
+            res += (len(nums) - right)
+
+res = 0
+mx = max(nums)
+left = 0
+freq = 0
+for right in range(len(nums)):
+    freq += (1 if nums[right] == mx else 0)
     while freq == k:
         res += (len(nums) - right)
         freq -= (1 if nums[left] == mx else 0)
