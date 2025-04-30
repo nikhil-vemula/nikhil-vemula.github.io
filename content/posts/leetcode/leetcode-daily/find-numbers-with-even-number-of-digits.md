@@ -28,3 +28,50 @@ cover:
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 ---
+```
+UMPIRE
+- [U]nderstand the problem, ask questions and come up with corner test cases.
+- [M]atch the leetcode pattern
+- [P]lan to using pattern template and data structures
+- [I]mplement the code
+- [R]eview by running the example and corner test cases
+- [E]valuate time and space complexity
+```
+
+## Understand
+
+- Find count of numbers whose digits are divisible by 2
+
+### Brute force
+
+- For each number find number of digits % 2 == 0 and res += 1
+
+## Match
+
+NA
+
+## Plan
+
+- no_of_digits % 2 == 0, res += 1
+
+## Implement
+
+```python
+res = 0
+def nDigits(n):
+    res = 0
+    while n:
+        res += 1
+        n //= 10
+    return res
+for n in nums:
+    if nDigits(n) % 2 == 0:
+        res += 1
+return res
+```
+
+## Review
+
+## Evaluate
+
+- Time complexity: `O(n)`
