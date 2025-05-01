@@ -1,5 +1,5 @@
 ---
-title: 'Find Numbers With Even Number of Digits'
+title: '1295.Find Numbers With Even Number of Digits'
 date: 2025-04-29T17:52:59-07:00
 slug: 'find-numbers-with-even-number-of-digits'
 tags: []
